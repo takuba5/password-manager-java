@@ -3,10 +3,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
-    public String service;
-    public String login;
-    public String password;
-    public String url;
+
 
     public  List<PasswordEntry> informations = new ArrayList<>();
     public Scanner scanner = new Scanner(System.in);
@@ -16,9 +13,17 @@ public class Menu {
 
 }
     void addToList(){
+        String service;
+        String login;
+        String password;
+        String url;
 
         System.out.println("Type service: ");
          service = scanner.nextLine();
+         if(service==null || service.isBlank() ){
+             System.out.println("Service name cannot be empty");
+             return;
+         }
         System.out.println("Type login: ");
          login = scanner.nextLine();
         System.out.println("Type password: ");
@@ -47,25 +52,60 @@ public class Menu {
         }
     }
 
-public void MENU(){
+    void deleteEntry() {
+        String serviceName;
+        System.out.println("What service do you want to delete?");
+        serviceName = scanner.nextLine();
+
+        PasswordEntry foundEntry = null;
+        for (PasswordEntry entry : informations) {
+            if (entry.getService().equalsIgnoreCase(serviceName)) {
+                foundEntry = entry;
+                break;
+            }
+        }
+        if (foundEntry == null) {
+            System.out.println("Service not found.");
+            return;
+        }
+        System.out.println("Found: " +foundEntry.toFormattedString());
+        System.out.println("Are you soure to delete this entry? (y/n)");
+        String choice = scanner.nextLine();
+        if (choice.equalsIgnoreCase("y")) {
+            informations.remove(foundEntry);
+
+
+        } else if (choice.equalsIgnoreCase("n")) {
+            System.out.println("Deletion canneled");
+            return;
+
+        } else {
+            System.out.println("Wrong choice");
+        }
+    }
+
+public void menu(){
         JsonStorage storage = new JsonStorage();
         informations = storage.read();
         System.out.println("=====Password Manager=====\n");
         while (true){
-        System.out.println("What do you want do to? 1-Add entry, 2-View entries,3-Search entry, 4-Delete entry, 5-Save and exit ");
-        String choise = scanner.nextLine();
-        if(choise.equals("1")){
+        System.out.println("What do you want do to? 1-Add entry, 2-View entries, 3-Search entry, 4-Delete entry, 5-Save and exit ");
+        String choice = scanner.nextLine();
+        if(choice.equals("1")){
             addToList();
-        } else if (choise.equals("2")) {
+        } else if (choice.equals("2")) {
 
             for(PasswordEntry entry: informations){
                 System.out.println(entry.toFormattedString());
             }
 
-        }else if(choise.equals("3")){
+        }else if(choice.equals("3")){
             searchEntry();
 
-        }else if (choise.equals("5")) {
+        }else if(choice.equals("4")){
+            deleteEntry();
+
+        }else if (choice.equals("5")) {
             storage.save(informations);
 
         break;
