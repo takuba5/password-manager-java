@@ -26,8 +26,16 @@ public class PasswordManager {
         }
         System.out.println("Type login: ");
         login = scanner.nextLine();
-        System.out.println("Type password: ");
-        password = scanner.nextLine();
+        System.out.println("Type password: (If you want to generate it, press \"g\") else press anythink else ");
+
+        String choice = scanner.nextLine();
+        if(choice.equalsIgnoreCase("g")){
+            String randomPassword = new PasswordGenerator().generateRandomPassword();
+            System.out.println("Generated password"  );
+            password = randomPassword;
+        }else {
+            password = scanner.nextLine();
+        }
         System.out.println("Type URL: ");
         url = scanner.nextLine();
         informations.add(new PasswordEntry(service,login,password,url));
