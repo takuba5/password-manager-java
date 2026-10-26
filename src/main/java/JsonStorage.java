@@ -3,32 +3,45 @@ import com.fasterxml.jackson.core.type.TypeReference;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
 public class JsonStorage {
     public ObjectMapper mapper = new ObjectMapper();
+    private EncryptionService service = new EncryptionService();
 
     void save(List<PasswordEntry> list){
         try {
-            mapper.writeValue(new File(Main.file), list);
-        } catch (IOException e) {
+            service.config();
+            String json = mapper.writeValueAsString(list);
+            String encrypted = service.encrypt(service.loadKey(),json);
+
+            Files.writeString(Path.of(Main.file), encrypted);
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
 
     }
     List<PasswordEntry> read() {
-        if(!new File(Main.file).exists() || new File(Main.file).length()==0){
+        File file = new File(Main.file);
+        if(!file.exists() || file.length()==0){
             return new ArrayList<>();
         }
 
+
         try {
+            service.config();
+            String encrypted = Files.readString(Path.of(Main.file));
+            String json =service.decrypt(service.loadKey(),encrypted);
+
             return mapper.readValue(
-                    new File(Main.file),
+                    json,
                     new TypeReference<List<PasswordEntry>>() {}
             );
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
