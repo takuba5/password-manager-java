@@ -28,13 +28,13 @@ public class PasswordManager {
         login = scanner.nextLine();
         System.out.println("Type password: (If you want to generate it, press \"g\") else press anythink else ");
 
-        String choice = scanner.nextLine();
-        if(choice.equalsIgnoreCase("g")){
+        String input = scanner.nextLine();
+        if(input.equalsIgnoreCase("g")){
             String randomPassword = new PasswordGenerator().generateRandomPassword();
             System.out.println("Generated password"  );
             password = randomPassword;
         }else {
-            password = scanner.nextLine();
+            password = input;
         }
         System.out.println("Type URL: ");
         url = scanner.nextLine();
