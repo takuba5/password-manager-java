@@ -26,7 +26,7 @@ public class PasswordManager {
         }
         System.out.println("Type login: ");
         login = scanner.nextLine();
-        System.out.println("Type password: (If you want to generate it, press \"g\") else press anythink else ");
+        System.out.println("Type password: (If you want to generate it, press \"g\") else type your password) ");
 
         String input = scanner.nextLine();
         if(input.equalsIgnoreCase("g")){

@@ -46,3 +46,4 @@ build/
 
 # Ignore local password vault
 hidden.json
+encryption.key
