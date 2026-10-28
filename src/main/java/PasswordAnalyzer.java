@@ -63,19 +63,19 @@ public class PasswordAnalyzer{
 
         for(int j=0;j< password.length();j++){
             char character = password.charAt(j);
-            if(bigLetters.indexOf(character)!=-1){
+            if(Character.isUpperCase(character)){
                 bLetters = true;
                 intbLetters++;
             }
-            if (smallLetters.indexOf(character) != -1) {
+            if (Character.isLowerCase(character)) {
                 sLetters = true;
                 intsLetters++;
             }
-            if (numbers.indexOf(character) != -1) {
+            if (Character.isDigit(character)) {
                 isNumbers = true;
                 intisNumbers++;
             }
-            if (specialChars.indexOf(character) != -1) {
+            if (!Character.isLetterOrDigit(character)) {
                 isSpecialCharacters = true;
                 intisSpecialCharacters++;
             }
