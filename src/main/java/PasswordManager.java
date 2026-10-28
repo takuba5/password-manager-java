@@ -18,6 +18,7 @@ public class PasswordManager {
         String password;
         String url;
 
+
         System.out.println("Type service: ");
         service = scanner.nextLine();
         if(service==null || service.isBlank() ){
@@ -173,7 +174,7 @@ public class PasswordManager {
         informations = storage.read();
         System.out.println("=====Password Manager=====\n");
         while (true){
-            System.out.println("What do you want do to? 1-Add entry, 2-View entries, 3-Search entry, 4-Delete entry, 5-Edit entry, 6-Save and exit ");
+            System.out.println("What do you want do to? 1-Add entry, 2-View entries, 3-Search entry, 4-Delete entry, 5-Edit entry, 6-Password Health Check, 7-Save and exit ");
             String choice = scanner.nextLine();
             if(choice.equals("1")){
                 addToList();
@@ -192,8 +193,11 @@ public class PasswordManager {
             }else if (choice.equals("5")) {
                 editEntry();
 
-
             }else if(choice.equals("6")){
+                PasswordAnalyzer passwordAnalyzer = new PasswordAnalyzer();
+                passwordAnalyzer.checkPasswordHealth(informations,scanner);
+
+            }else if(choice.equals("7")){
                 storage.save(informations);
                 break;
             }else {

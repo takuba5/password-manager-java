@@ -1,0 +1,53 @@
+[33mcommit 1d1c029c76e708d8a801a184a18b8d03b4ae0b81[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: takuba5 <takuba@o2.pl>
+Date:   Tue Oct 27 17:13:03 2026 +0100
+
+    Update .gitignore and PasswordManager
+
+[33mcommit 22eb722fafdb33c3ad0cbb0a6979057be1e21beb[m
+Author: takuba5 <takuba@o2.pl>
+Date:   Mon Oct 26 18:26:34 2026 +0100
+
+    Encryption method have been implemented to JsonStorage class
+
+[33mcommit db4587eb851a5c83e1fa1edec4792232fc5a95f9[m
+Author: takuba5 <takuba@o2.pl>
+Date:   Mon Oct 26 18:20:16 2026 +0100
+
+    I created an EncryptionService class that uses AES-GCM to encrypt and decrypt JSON data, securely generates and stores an AES key, and use Base64 encoding to store the encrypted data and nonce as text
+
+[33mcommit 3ee62164fe29ccb5eb5fa7bee5881fe408c07949[m
+Author: takuba5 <takuba@o2.pl>
+Date:   Thu Oct 22 17:03:33 2026 +0200
+
+    Added new class PasswordGenerator, which generates secure passwords
+
+[33mcommit 370d3cf68d07a80a6f7d7ea2e461bdd4582683be[m
+Author: takuba5 <takuba@o2.pl>
+Date:   Thu Oct 22 16:41:07 2026 +0200
+
+    Create README.md
+
+[33mcommit 7b8e491fb4e2109d3fdbe355eed868a39ea59d6b[m
+Author: takuba5 <takuba@o2.pl>
+Date:   Thu Oct 22 16:38:36 2026 +0200
+
+    Moved Menu class to PasswordManager and added new method editEntry
+
+[33mcommit ff1fc93e8a93d43468c967ba957d96026330ed6c[m
+Author: takuba5 <takuba@o2.pl>
+Date:   Thu Oct 22 16:12:15 2026 +0200
+
+    Added deleting method
+
+[33mcommit 2de4768e6a72175433270486b2d3ffa7ee84c9ac[m
+Author: takuba5 <takuba@o2.pl>
+Date:   Wed Oct 21 18:13:25 2026 +0200
+
+    Added search method in Menu.java
+
+[33mcommit 9744b4903fc841e760a89c686556c2a3c3f02677[m
+Author: takuba5 <takuba@o2.pl>
+Date:   Wed Oct 21 17:53:08 2026 +0200
+
+    Initial commit: Java password manager
